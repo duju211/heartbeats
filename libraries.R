@@ -1,3 +1,4 @@
+library(tidymodels)
 library(conflicted)
 library(tidyverse)
 library(janitor)
