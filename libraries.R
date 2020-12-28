@@ -1,0 +1,9 @@
+library(conflicted)
+library(tidyverse)
+library(janitor)
+library(hexbin)
+library(drake)
+library(pins)
+library(fs)
+
+conflict_prefer("filter", "dplyr")

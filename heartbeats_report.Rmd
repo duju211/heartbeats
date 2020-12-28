@@ -1,0 +1,97 @@
+---
+title: "Heartrate"
+author: "Julian During"
+date: "27 12 2020"
+output: 
+  html_document:
+    theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("libraries.R")
+dir_ls("R") %>% 
+  walk(
+    ~ knitr::read_chunk(
+      path = .x,
+      labels = path_ext_remove(path_file(.x))))
+```
+
+# Idea
+
+Explore heartrate data
+
+# Data
+
+## Activities with Heartrate
+
+Get activities with heartrate data:
+
+```{r act_raw}
+```
+
+Preprocess heartrate data:
+
+```{r pre_process_bpm}
+```
+
+```{r, echo=FALSE}
+readd(df_act)
+```
+
+## Measurements from Activities with Heartrate
+
+Get all measurements from relevant activities:
+
+```{r act_meas_nested}
+```
+
+Preprocess measurement data:
+
+```{r act_meas}
+```
+
+```{r, echo=FALSE}
+readd(df_act_meas)
+```
+
+
+## EDA Plots Activities {.tabset}
+
+### Runs
+
+```{r vis_eda_act_run}
+```
+
+```{r, echo=FALSE}
+readd(gg_eda_act_run)
+```
+
+### Rides
+
+```{r vis_eda_act_ride}
+```
+
+```{r, echo=FALSE}
+readd(gg_eda_act_ride)
+```
+
+## EDA Plots Measurements {.tabset}
+
+```{r vis_eda_act_meas}
+```
+
+### Runs
+
+```{r, echo=FALSE}
+readd(gg_eda_act_meas_run)
+```
+
+### Rides
+
+```{r, echo=FALSE}
+readd(gg_eda_act_meas_ride)
+```
+
+
+
