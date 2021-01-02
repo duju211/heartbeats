@@ -3,8 +3,10 @@ title: "Heartrate"
 author: "Julian During"
 date: "27 12 2020"
 output: 
-  html_document:
+  html_document: 
     theme: cosmo
+    toc: yes
+    number_sections: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -39,23 +41,6 @@ Preprocess heartrate data:
 readd(df_act)
 ```
 
-## Measurements from Activities with Heartrate
-
-Get all measurements from relevant activities:
-
-```{r act_meas_nested}
-```
-
-Preprocess measurement data:
-
-```{r act_meas}
-```
-
-```{r, echo=FALSE}
-readd(df_act_meas)
-```
-
-
 ## EDA Plots Activities {.tabset}
 
 ### Runs
@@ -76,22 +61,69 @@ readd(gg_eda_act_run)
 readd(gg_eda_act_ride)
 ```
 
-## EDA Plots Measurements {.tabset}
+# Modeling
 
-```{r vis_eda_act_meas}
+## Activities
+
+Set initial splits:
+
+```{r eval=FALSE}
+set.seed(123)
+init_split <- initial_split(df_act, strata = average_heartrate)
+bpm_train <- training(init_split)
+bpm_test <- testing(init_split)
+set.seed(234)
+bpm_folds <- bootstraps(bpm_train, strata = average_heartrate)
 ```
 
-### Runs
+### GLMNet
+
+Define the workflow:
+
+```{r glm_net_wf}
+```
+
+```{r}
+readd(glm_net_workflow)
+```
+
+Tune the workflow:
+
+```{r glm_net_tune_wf}
+```
+
+```{r include=FALSE}
+loadd(glm_net_tune)
+```
 
 ```{r, echo=FALSE}
-readd(gg_eda_act_meas_run)
+glm_net_tune
 ```
 
-### Rides
+Determine the best parameter set:
 
-```{r, echo=FALSE}
-readd(gg_eda_act_meas_ride)
+```{r}
+show_best(glm_net_tune, metric = "rmse")
 ```
 
+
+Fit the model one last time with the determined parameters:
+
+```{r glm_net_last_fit}
+```
+
+Evaluate the performance:
+
+```{r include=FALSE}
+loadd(glm_net_fit)
+```
+
+```{r}
+collect_metrics(glm_net_fit)
+```
+
+```{r}
+readd(gg_glm_net_fit)
+```
 
 

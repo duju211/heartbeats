@@ -8,3 +8,5 @@ library(pins)
 library(fs)
 
 conflict_prefer("filter", "dplyr")
+conflict_prefer("workflow", "workflows")
+conflict_prefer("expand", "tidyr")
