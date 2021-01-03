@@ -6,5 +6,6 @@ pre_process_act <- function(df_act_raw, complete_rate) {
       elev_low, average_temp, max_speed, average_speed, average_cadence
     ) %>%
     select(where(~ sum(!is.na(.x)) / length(.x) >= complete_rate)) %>%
+    mutate(start_date = as_date(start_date)) %>%
     relocate(average_heartrate, id)
 }

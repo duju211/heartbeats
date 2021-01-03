@@ -64,7 +64,7 @@ readd(gg_eda_act_ride)
 
 # Modeling
 
-## Activities
+## Activities {.tabset}
 
 Set initial splits:
 
@@ -127,4 +127,52 @@ collect_metrics(glm_net_fit)
 readd(gg_glm_net_fit)
 ```
 
+### Random Forest
 
+Define the workflow:
+
+```{r rf_wf}
+```
+
+```{r}
+readd(rf_workflow)
+```
+
+Tune the workflow:
+
+```{r rf_tune_wf}
+```
+
+```{r include=FALSE}
+loadd(rf_tune)
+```
+
+```{r, echo=FALSE}
+rf_tune
+```
+
+Determine the best parameter set:
+
+```{r}
+show_best(rf_tune, metric = "rmse")
+```
+
+
+Fit the model one last time with the determined parameters:
+
+```{r rf_last_fit}
+```
+
+Evaluate the performance:
+
+```{r include=FALSE}
+loadd(rf_fit)
+```
+
+```{r}
+collect_metrics(rf_fit)
+```
+
+```{r}
+readd(gg_rf_fit)
+```
