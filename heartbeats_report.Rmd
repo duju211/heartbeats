@@ -35,7 +35,7 @@ Get activities with heartrate data:
 
 Preprocess heartrate data:
 
-```{r pre_process_bpm}
+```{r pre_process_act}
 ```
 
 ```{r, echo=FALSE}
@@ -62,9 +62,7 @@ readd(gg_eda_act_run)
 readd(gg_eda_act_ride)
 ```
 
-# Modeling
-
-## Activities {.tabset}
+# Modeling {.tabset}
 
 Set initial splits:
 
@@ -77,7 +75,7 @@ set.seed(234)
 bpm_folds <- bootstraps(bpm_train, strata = average_heartrate)
 ```
 
-### GLMNet
+## GLMNet
 
 Define the workflow:
 
@@ -127,7 +125,7 @@ collect_metrics(glm_net_fit)
 readd(gg_glm_net_fit)
 ```
 
-### Random Forest
+## Random Forest
 
 Define the workflow:
 
@@ -176,3 +174,31 @@ collect_metrics(rf_fit)
 ```{r}
 readd(gg_rf_fit)
 ```
+
+# Variable Importance {.tabset}
+
+```{r vis_vip}
+```
+
+## GLMNet
+
+```{r, echo=FALSE}
+readd(gg_glm_net_vip)
+```
+
+## Random Forest
+
+```{r, echo=FALSE}
+readd(gg_rf_vip)
+```
+
+# Save Model
+
+```{r}
+board_register_github(repo = "duju211/strava_act")
+
+pin(rf_fit$.workflow[[1]], "rf_mod", board = "github")
+
+board_disconnect("github")
+```
+
