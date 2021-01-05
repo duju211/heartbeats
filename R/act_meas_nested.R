@@ -1,9 +1,8 @@
-act_meas_nested <- function(df_act) {
+act_meas_nested <- function(df_act_id_rel) {
   board_register_github(repo = "duju211/strava_act")
 
-  df_act_meas_nested <- df_act %>%
-    transmute(
-      id, athlete_id, type,
+  df_act_meas_nested <- df_act_id_rel %>%
+    mutate(
       github_name = str_glue("act_{id}_{athlete_id}")
     ) %>%
     mutate(meas = map(github_name, pin_get, board = "github"))

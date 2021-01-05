@@ -7,6 +7,5 @@ act_raw <- function() {
 
   df_act %>%
     filter(has_heartrate) %>%
-    mutate(type = if_else(type == "VirtualRide", "Ride", type)) %>%
     clean_names()
 }
