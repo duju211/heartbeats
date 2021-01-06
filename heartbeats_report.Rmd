@@ -195,7 +195,7 @@ readd(gg_rf_vip)
 # Save Model
 
 ```{r}
-board_register_github(repo = "duju211/strava_act")
+board_register_github(repo = "duju211/strava_act", branch = "master")
 
 pin(rf_fit$.workflow[[1]], "rf_mod", board = "github")
 
