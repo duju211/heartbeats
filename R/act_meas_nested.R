@@ -1,5 +1,5 @@
 act_meas_nested <- function(df_act_id_rel) {
-  board_register_github(repo = "duju211/strava_act")
+  board_register_github(repo = "duju211/strava_act", branch = "master")
 
   df_act_meas_nested <- df_act_id_rel %>%
     mutate(

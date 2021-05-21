@@ -8,6 +8,8 @@ output:
     toc: yes
     number_sections: yes
     code_folding: hide
+params:
+  rerun: FALSE
 ---
 
 ```{r setup, include=FALSE}
@@ -22,27 +24,62 @@ dir_ls("R") %>%
       labels = path_ext_remove(path_file(.x))))
 ```
 
+```{r, eval=!params$rerun, include=FALSE}
+loadd(df_act_raw)
+loadd(df_act)
+```
+
+
 # Idea
 
-Explore heartrate data
+In this post, I want to explore the heart rate data of my Strava Activities.
+
+Heart rate can be considered as a measurement of the intensity of an physical
+activity.
+So in this post, I want to find out, what are the driving forces behind the
+intensity level of my activities. 
+For future activities I would like to be able to determine, if the activity was
+less or more exhausting than comparable activities.
+
+In this post, the following libraries are used:
 
 # Data
 
+All my Strava activities are stored in a private Github repository. How this
+can be done, is described in an earlier post.
+
 ## Activities with Heartrate
 
-Get activities with heartrate data:
+Loadd all activities from the repository. Filter for those with heart rate data:
 
 ```{r act_raw}
 ```
 
-Preprocess heartrate data:
+```{r, eval=params$rerun}
+df_act_raw <- act_raw()
+```
+
+The raw data consists of `r nrow(df_act_raw)` activities. The aim of this post
+is to predict the `average_heartrate` with the available information.
+
+```{r, echo=FALSE}
+df_act_raw
+```
+
+Preprocess data. Only select relevant columns and convert the `start_date` from
+a timestamp to a date column.
 
 ```{r pre_process_act}
 ```
 
-```{r, echo=FALSE}
-readd(df_act)
+```{r, eval=params$rerun}
+df_act <- pre_process_act(df_act_raw)
 ```
+
+```{r, echo=FALSE}
+df_act
+```
+
 
 ## EDA Plots Activities {.tabset}
 
