@@ -25,7 +25,19 @@ dir_ls("R") %>%
 ```
 
 ```{r, eval=!params$rerun, include=FALSE}
+loadd(glm_net_workflow)
+loadd(gg_eda_act_ride)
+loadd(gg_glm_net_fit)
+loadd(gg_eda_act_run)
+loadd(gg_glm_net_vip)
+loadd(glm_net_tune)
+loadd(rf_workflow)
+loadd(glm_net_fit)
 loadd(df_act_raw)
+loadd(gg_rf_fit)
+loadd(gg_rf_vip)
+loadd(rf_tune)
+loadd(rf_fit)
 loadd(df_act)
 ```
 
@@ -50,7 +62,7 @@ can be done, is described in an earlier post.
 
 ## Activities with Heartrate
 
-Loadd all activities from the repository. Filter for those with heart rate data:
+Load all activities from the repository. Filter for those with heart rate data:
 
 ```{r act_raw}
 ```
@@ -89,7 +101,7 @@ df_act
 ```
 
 ```{r, echo=FALSE}
-readd(gg_eda_act_run)
+gg_eda_act_run
 ```
 
 ### Rides
@@ -98,7 +110,7 @@ readd(gg_eda_act_run)
 ```
 
 ```{r, echo=FALSE}
-readd(gg_eda_act_ride)
+gg_eda_act_ride
 ```
 
 # Modeling {.tabset}
@@ -122,7 +134,7 @@ Define the workflow:
 ```
 
 ```{r}
-readd(glm_net_workflow)
+glm_net_workflow
 ```
 
 Tune the workflow:
@@ -131,7 +143,7 @@ Tune the workflow:
 ```
 
 ```{r include=FALSE}
-loadd(glm_net_tune)
+glm_net_tune
 ```
 
 ```{r, echo=FALSE}
@@ -153,7 +165,7 @@ Fit the model one last time with the determined parameters:
 Evaluate the performance:
 
 ```{r include=FALSE}
-loadd(glm_net_fit)
+glm_net_fit
 ```
 
 ```{r}
@@ -161,7 +173,7 @@ collect_metrics(glm_net_fit)
 ```
 
 ```{r}
-readd(gg_glm_net_fit)
+gg_glm_net_fit
 ```
 
 ## Random Forest
@@ -172,7 +184,7 @@ Define the workflow:
 ```
 
 ```{r}
-readd(rf_workflow)
+rf_workflow
 ```
 
 Tune the workflow:
@@ -181,7 +193,7 @@ Tune the workflow:
 ```
 
 ```{r include=FALSE}
-loadd(rf_tune)
+rf_tune
 ```
 
 ```{r, echo=FALSE}
@@ -203,7 +215,7 @@ Fit the model one last time with the determined parameters:
 Evaluate the performance:
 
 ```{r include=FALSE}
-loadd(rf_fit)
+rf_fit
 ```
 
 ```{r}
@@ -211,7 +223,7 @@ collect_metrics(rf_fit)
 ```
 
 ```{r}
-readd(gg_rf_fit)
+gg_rf_fit
 ```
 
 # Variable Importance {.tabset}
@@ -222,13 +234,13 @@ readd(gg_rf_fit)
 ## GLMNet
 
 ```{r, echo=FALSE}
-readd(gg_glm_net_vip)
+gg_glm_net_vip
 ```
 
 ## Random Forest
 
 ```{r, echo=FALSE}
-readd(gg_rf_vip)
+gg_rf_vip
 ```
 
 # Save Model
