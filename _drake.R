@@ -44,8 +44,8 @@ bpm_plan <- drake_plan(
 
   bpm_report = target(
     command = {
-      rmarkdown::render(knitr_in("heartbeats_report.Rmd"))
-      file_out("heartbeats_report.html")
+      rmarkdown::render(knitr_in("heartrate_report_distill.Rmd"))
+      file_out("heartbeats_report_distill.html")
     })
 )
 
